@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='utf-8'?>
+<plugin id="cordova-plugin-devicecompile" version="0.1.1" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
+  <name>devicecompile</name>
+  <platform name="android">
+    <config-file parent="/*" target="res/xml/config.xml">
+      <feature name="devicecompile">
+        <param name="android-package" value="cordova.plugin.devicecompile.devicecompile" />
+        <param name="onload" value="true" />
+      </feature>
+    </config-file>
+    <config-file parent="/*" target="AndroidManifest.xml" />
+      <source-file src="src/android/devicecompile.java" target-dir="src/cordova/plugin/devicecompile/devicecompile" />
+      <source-file src="src/android/res/values-de/strings.xml" target-dir="res/values-de" />
+  		<source-file src="src/android/res/values-es/strings.xml" target-dir="res/values-es" />
+  		<source-file src="src/android/res/values-fr/strings.xml" target-dir="res/values-fr" />
+  		<source-file src="src/android/res/values-ja/strings.xml" target-dir="res/values-ja" />
+      <source-file src="src/android/res/values-pt/strings.xml" target-dir="res/values-pt" />
+      <config-file parent="/resources" target="res/values/strings.xml">
+      	<string name="message">This application does not run on a device that is rooted or does not have a passcode set.</string>
+      	<string name="label">Close</string>
+      </config-file>
+    </platform>
+    <platform name="ios">
+    <config-file parent="/*" target="config.xml">
+      <feature name="devicecompile">
+        <param name="ios-package" value="devicecompile" />
+        <param name="onload" value="true" />
+      </feature>
+    </config-file>
+    <framework src="Security.framework" weak="true"/>
+    <header-file src="src/ios/devicecompile.h" />
+    <source-file src="src/ios/devicecompile.m" />
+    <header-file src="src/ios/UIDevice+PasscodeStatus.h"/>
+    <source-file src="src/ios/UIDevice+PasscodeStatus.m"/>
+    <header-file src="src/ios/UIDevice+JBDetect.h"/>
+    <source-file src="src/ios/UIDevice+JBDetect.m"/>
+    <resource-file src="src/ios/devicecompile.bundle"/>
+		<config-file platform="ios" target="*-Info.plist" parent="CFBundleLocalizations">
+		            <array>
+		                <string>fr</string>
+		                <string>pt</string>
+		                <string>ja</string>
+		                <string>es</string>
+		                <string>de</string>
+		                <string>en</string>
+		            </array>
+		</config-file>
+  </platform>
+</plugin>

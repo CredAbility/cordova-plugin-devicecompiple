@@ -1,0 +1,17 @@
+{
+  "name": "cordova-plugin-devicecompile",
+  "version": "0.1.1",
+  "description": "Customized cordova plugin",
+  "cordova": {
+    "id": "cordova-plugin-devicecompile",
+    "platforms": [
+      "android",
+      "ios"
+    ]
+  },
+  "keywords": [
+    "ecosystem:cordova"
+  ],
+  "author": "sathish.k",
+  "license": "ISC"
+}
