@@ -23,14 +23,6 @@
 #import "UIDevice+JBDetect.h"
 #import <Cordova/CDV.h>
 
-
-@interface devicecompile : CDVPlugin {
-  // Member variables go here.
-}
-
-- (void) checkDevice:(CDVInvokedUrlCommand*)command;
-@end
-
 @implementation devicecompile
 
 - (void)pluginInitialize
@@ -55,15 +47,21 @@
     NSString *alertMessage = [thisBundle localizedStringForKey:@"This application does not run on a device that is jailbroken or does not have a passcode set." value:nil table:nil];
     NSString *alertCloseButtonText = [thisBundle localizedStringForKey:@"Close" value:nil table:nil];
 
-    dispatch_async( dispatch_get_main_queue(), ^ {
+    //dispatch_async( dispatch_get_main_queue(), ^ {
       //Remove webView
       //[self.webView removeFromSuperview];
       // Show Alert
       //[self showAlert:alertMessage closeLabel:alertCloseButtonText];
-    });
+    //});
   }
 
-  NSString *resultstring = jailbroken + "-" + LNPasscodeStatusDisabled + "-" + LNPasscodeStatusUnknown;
+  NSString *resultstring = @"Brokenstatus: ";
+
+  resultstring = [resultstring stringByAppendingString:jailbroken ? "true" : "false"];
+  resultstring = [resultstring stringByAppendingString:@", Disabled: "];
+  resultstring = [resultstring stringByAppendingString:LNPasscodeStatusDisabled];
+  resultstring = [resultstring stringByAppendingString:@", Status: "];
+  resultstring = [resultstring stringByAppendingString:LNPasscodeStatusUnknown];
 
   CDVPluginResult* pluginResult = nil;
   pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:resultstring];

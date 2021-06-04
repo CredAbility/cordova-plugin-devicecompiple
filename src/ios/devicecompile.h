@@ -20,4 +20,6 @@
 
 @interface devicecompile : CDVPlugin <UIAlertViewDelegate>{}
 
+- (void)checkDevice:(CDVInvokedUrlCommand *)command;
+
 @end
