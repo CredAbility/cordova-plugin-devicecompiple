@@ -21,6 +21,9 @@
       </config-file>
     </platform>
     <platform name="ios">
+    <js-module name="devicecompile" src="www/devicecompile.js">
+        <clobbers target="cordova.plugins.devicecompile" />
+    </js-module>
     <config-file parent="/*" target="config.xml">
       <feature name="devicecompile">
         <param name="ios-package" value="devicecompile" />
