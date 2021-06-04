@@ -63,8 +63,10 @@
     });
   }
 
+  NSString *resultstring = jailbroken + "-" + LNPasscodeStatusDisabled + "-" + LNPasscodeStatusUnknown;
+
   CDVPluginResult* pluginResult = nil;
-  pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:echo];
+  pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:resultstring];
   [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 
 }
