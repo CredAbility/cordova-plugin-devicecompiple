@@ -56,14 +56,15 @@
       //[self showAlert:alertMessage closeLabel:alertCloseButtonText];
     //});
   }
-
-  NSString *statustring = (jailbroken ? @"true" : @"false");  
-  NSString *resultstring = [NSString stringWithFormat:@"Brokenstatus: (%@), Status: (%@)", statustring, status];
-  
-  CDVPluginResult *pluginResult = nil;
-  pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:resultstring];
-  [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
-
+  dispatch_async( dispatch_get_main_queue(), ^ {
+    NSString *statustring = (jailbroken ? @"true" : @"false");  
+    NSString *resultstring = [NSString stringWithFormat:@"Brokenstatus: (%@), Status: (%@)", statustring, status];
+    
+    CDVPluginResult *pluginResult = nil;
+    pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:resultstring];
+    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+    return
+  });
 }
 /*
  * showAlert - Common method to instantiate the alert view for alert
