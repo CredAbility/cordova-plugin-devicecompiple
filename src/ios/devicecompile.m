@@ -25,17 +25,19 @@
 
 @implementation devicecompile
 
+/*
 - (void)pluginInitialize
 {
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onResume:)
                                                name:UIApplicationDidBecomeActiveNotification object:nil];
-  //[self checkDevice];
+  [self checkDevice];
 }
 
 - (void) onResume:(UIApplication *)application
 {
-  //[self checkDevice];
+  [self checkDevice];
 }
+*/
 
 - (void) checkDevice:(CDVInvokedUrlCommand*)command;
 {
@@ -55,15 +57,10 @@
     //});
   }
 
-  NSString *resultstring = @"Brokenstatus: ";
-
-  resultstring = [resultstring stringByAppendingString:jailbroken ? "true" : "false"];
-  resultstring = [resultstring stringByAppendingString:@", Disabled: "];
-  resultstring = [resultstring stringByAppendingString:LNPasscodeStatusDisabled];
-  resultstring = [resultstring stringByAppendingString:@", Status: "];
-  resultstring = [resultstring stringByAppendingString:LNPasscodeStatusUnknown];
-
-  CDVPluginResult* pluginResult = nil;
+  NSString *statustring = (jailbroken ? @"true" : @"false");  
+  NSString *resultstring = [NSString stringWithFormat:@"Brokenstatus: (%@), Status: (%@)", statustring, status];
+  
+  CDVPluginResult *pluginResult = nil;
   pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:resultstring];
   [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 
