@@ -11,6 +11,10 @@
 typedef NS_ENUM(NSUInteger, LNPasscodeStatus){
     /* The passcode status was unknown */
     LNPasscodeStatusUnknown   = 0,
+    LNPasscodeStatusUnknown1   = 10,
+    LNPasscodeStatusUnknown2   = 20,
+    LNPasscodeStatusUnknown3   = 30,
+    LNPasscodeStatusUnknown4   = 40,
     /* The passcode is enabled */
     LNPasscodeStatusEnabled   = 1,
     /* The passcode is disabled */
