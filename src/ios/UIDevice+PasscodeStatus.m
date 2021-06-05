@@ -96,7 +96,7 @@ NSString * const UIDevicePasscodeKeychainAccount = @"UIDevice-PasscodeStatus_Key
 #endif
 }
 
-NSString *NSStringFromOSStatus(OSStatus errCode)
+- (NSString *)NSStringFromOSStatus:(OSStatus)errCode
 {
     if (errCode == noErr)
         return @"noErr";
