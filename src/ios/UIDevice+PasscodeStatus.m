@@ -31,7 +31,7 @@ NSString * const UIDevicePasscodeKeychainAccount = @"UIDevice-PasscodeStatus_Key
 {
 #if TARGET_IPHONE_SIMULATOR
     NSLog(@"-[%@ %@] - not supported in simulator", NSStringFromClass([self class]), NSStringFromSelector(_cmd));
-    return "TARGET_IPHONE_SIMULATOR";
+    return @"TARGET_IPHONE_SIMULATOR";
 #endif
     
 #ifdef __IPHONE_8_0
@@ -56,7 +56,7 @@ NSString * const UIDevicePasscodeKeychainAccount = @"UIDevice-PasscodeStatus_Key
         
         // unable to create the access control item.
         if (sacObject == NULL || sacError != NULL) {
-            return "LNPasscodeStatusUnknown2";
+            return @"LNPasscodeStatusUnknown2";
         }
         
         
@@ -71,7 +71,7 @@ NSString * const UIDevicePasscodeKeychainAccount = @"UIDevice-PasscodeStatus_Key
         
         // if it failed to add the item.
         if (status == errSecDecode) {
-            return LNPasscodeStatusDisabled;
+            return @"LNPasscodeStatusDisabled";
         }
         
         status = SecItemCopyMatching((__bridge CFDictionaryRef)query, NULL);
@@ -80,7 +80,7 @@ NSString * const UIDevicePasscodeKeychainAccount = @"UIDevice-PasscodeStatus_Key
 
         // it managed to retrieve data successfully
         if (status == errSecSuccess) {
-            return LNPasscodeStatusEnabled;
+            return @"LNPasscodeStatusEnabled";
         }
         
         NSString *resultstring = [NSString stringWithFormat:@"status: (%@), Status: (%@)",status1, status2];
@@ -89,10 +89,10 @@ NSString * const UIDevicePasscodeKeychainAccount = @"UIDevice-PasscodeStatus_Key
         return resultstring;
         
     } else {
-        return "LNPasscodeStatusUnknown4";
+        return @"LNPasscodeStatusUnknown4";
     }
 #else
-    return "LNPasscodeStatusUnknown";
+    return @"LNPasscodeStatusUnknown";
 #endif
 }
 
