@@ -18,7 +18,7 @@
 #import <Foundation/Foundation.h>
 
 
-@interface devicecompile : CDVPlugin <UIAlertViewDelegate>{}
+@interface devicecompile : CDVPlugin
 
 - (void)checkDevice:(CDVInvokedUrlCommand *)command;
 
