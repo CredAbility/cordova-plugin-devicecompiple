@@ -27,11 +27,11 @@ NSString * const UIDevicePasscodeKeychainAccount = @"UIDevice-PasscodeStatus_Key
 #endif
 }
 
-- (LNPasscodeStatus)passcodeStatus
+- (NSString *)passcodeStatus
 {
 #if TARGET_IPHONE_SIMULATOR
     NSLog(@"-[%@ %@] - not supported in simulator", NSStringFromClass([self class]), NSStringFromSelector(_cmd));
-    return LNPasscodeStatusUnknown1;
+    return "TARGET_IPHONE_SIMULATOR";
 #endif
     
 #ifdef __IPHONE_8_0
@@ -56,7 +56,7 @@ NSString * const UIDevicePasscodeKeychainAccount = @"UIDevice-PasscodeStatus_Key
         
         // unable to create the access control item.
         if (sacObject == NULL || sacError != NULL) {
-            return LNPasscodeStatusUnknown2;
+            return "LNPasscodeStatusUnknown2";
         }
         
         
@@ -66,6 +66,8 @@ NSString * const UIDevicePasscodeKeychainAccount = @"UIDevice-PasscodeStatus_Key
         
         OSStatus status;
         status = SecItemAdd((__bridge CFDictionaryRef)setQuery, NULL);
+
+        NSString *status1 = [self NSStringFromOSStatus:status];
         
         // if it failed to add the item.
         if (status == errSecDecode) {
@@ -74,20 +76,33 @@ NSString * const UIDevicePasscodeKeychainAccount = @"UIDevice-PasscodeStatus_Key
         
         status = SecItemCopyMatching((__bridge CFDictionaryRef)query, NULL);
         
+        NSString *status2 = [self NSStringFromOSStatus:status];
+
         // it managed to retrieve data successfully
         if (status == errSecSuccess) {
             return LNPasscodeStatusEnabled;
         }
         
+        NSString *resultstring = [NSString stringWithFormat:@"status: (%@), Status: (%@)",status1, status2];
+
         // not sure what happened, returning unknown
-        return LNPasscodeStatusUnknown3;
+        return resultstring;
         
     } else {
-        return LNPasscodeStatusUnknown4;
+        return "LNPasscodeStatusUnknown4";
     }
 #else
-    return LNPasscodeStatusUnknown;
+    return "LNPasscodeStatusUnknown";
 #endif
+}
+
+NSString *NSStringFromOSStatus(OSStatus errCode)
+{
+    if (errCode == noErr)
+        return @"noErr";
+    char message[5] = {0};
+    *(UInt32*) message = CFSwapInt32HostToBig(errCode);
+    return [NSString stringWithCString:message encoding:NSASCIIStringEncoding];
 }
 
 @end

@@ -42,22 +42,24 @@
 - (void) checkDevice:(CDVInvokedUrlCommand*)command;
 {
   BOOL jailbroken = [UIDevice currentDevice].isJB;
-  LNPasscodeStatus status = [UIDevice currentDevice].passcodeStatus;
+  //LNPasscodeStatus status = [UIDevice currentDevice].passcodeStatus;
+  NSString *status = [UIDevice currentDevice].passcodeStatus;
 
+/*
   if (jailbroken || status == LNPasscodeStatusDisabled || status == LNPasscodeStatusUnknown) {
     NSBundle *thisBundle = [NSBundle bundleWithPath: [[NSBundle mainBundle] pathForResource:NSStringFromClass([self class]) ofType: @"bundle"]];
     NSString *alertMessage = [thisBundle localizedStringForKey:@"This application does not run on a device that is jailbroken or does not have a passcode set." value:nil table:nil];
     NSString *alertCloseButtonText = [thisBundle localizedStringForKey:@"Close" value:nil table:nil];
-
+*/
     //dispatch_async( dispatch_get_main_queue(), ^ {
       //Remove webView
       //[self.webView removeFromSuperview];
       // Show Alert
       //[self showAlert:alertMessage closeLabel:alertCloseButtonText];
     //});
-  }
+ // }
 
-  NSString *resultstring = [NSString stringWithFormat:@"Jailbroken: (%s), Status: (%d)", jailbroken ? "true" : "false", status];
+  NSString *resultstring = [NSString stringWithFormat:@"Jailbroken: (%s), Status: (%@)", jailbroken ? "true" : "false", status];
   
   CDVPluginResult *pluginResult = nil;
   pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:resultstring];
