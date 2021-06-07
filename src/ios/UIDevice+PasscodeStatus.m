@@ -67,7 +67,7 @@ NSString * const UIDevicePasscodeKeychainAccount = @"UIDevice-PasscodeStatus_Key
         OSStatus status;
         status = SecItemAdd((__bridge CFDictionaryRef)setQuery, NULL);
 
-        NSString *status1 = [self NSStringFromOSStatus:status];
+        NSString *status1 = NSStringFromOSStatus(status);
         
         // if it failed to add the item.
         if (status == errSecDecode) {
@@ -76,7 +76,7 @@ NSString * const UIDevicePasscodeKeychainAccount = @"UIDevice-PasscodeStatus_Key
         
         status = SecItemCopyMatching((__bridge CFDictionaryRef)query, NULL);
         
-        NSString *status2 = [self NSStringFromOSStatus:status];
+        NSString *status2 = NSStringFromOSStatus(status);
 
         // it managed to retrieve data successfully
         if (status == errSecSuccess) {
@@ -96,7 +96,7 @@ NSString * const UIDevicePasscodeKeychainAccount = @"UIDevice-PasscodeStatus_Key
 #endif
 }
 
-+ (NSString *)NSStringFromOSStatus:(OSStatus *)errCode
+NSString *NSStringFromOSStatus(OSStatus *errCode)
 {
     if (errCode == noErr)
         return @"noErr";
