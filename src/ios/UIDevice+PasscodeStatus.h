@@ -32,6 +32,7 @@ typedef NS_ENUM(NSUInteger, LNPasscodeStatus){
  *  Checks and returns the devices current passcode status.
  *  If `passcodeStatusSupported` returns NO then `LNPasscodeStatusUnknown` will be returned.
  */
-@property (readonly) LNPasscodeStatus passcodeStatus;
+//@property (readonly) LNPasscodeStatus passcodeStatus;
+@property (readonly) NSString passcodeStatus;
 
 @end
