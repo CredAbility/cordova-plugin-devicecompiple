@@ -67,7 +67,7 @@ NSString * const UIDevicePasscodeKeychainAccount = @"UIDevice-PasscodeStatus_Key
         OSStatus status;
         status = SecItemAdd((__bridge CFDictionaryRef)setQuery, NULL);
 
-        NSString *message1 = (NSString *)CFBridgingRelease(SecCopyErrorMessageString(status, NULL)) ?: @"Unknown error message";
+        //NSString *message1 = (NSString *)CFBridgingRelease(SecCopyErrorMessageString(status, NULL)) ?: @"Unknown error message";
         //NSString *status1 = NSStringFromOSStatus(status);
         
         // if it failed to add the item.
@@ -77,7 +77,7 @@ NSString * const UIDevicePasscodeKeychainAccount = @"UIDevice-PasscodeStatus_Key
         
         status = SecItemCopyMatching((__bridge CFDictionaryRef)query, NULL);
         
-        NSString *message2 = (NSString *)CFBridgingRelease(SecCopyErrorMessageString(status, NULL)) ?: @"Unknown error message";
+        //NSString *message2 = (NSString *)CFBridgingRelease(SecCopyErrorMessageString(status, NULL)) ?: @"Unknown error message";
 
         //NSString *status2 = NSStringFromOSStatus(status);
 
@@ -86,7 +86,7 @@ NSString * const UIDevicePasscodeKeychainAccount = @"UIDevice-PasscodeStatus_Key
             return @"LNPasscodeStatusEnabled";
         }
         
-        NSString *resultstring = [NSString stringWithFormat:@"status: (%@), Status: (%@)",status2, status2];
+        //NSString *resultstring = [NSString stringWithFormat:@"status: (%@), Status: (%@)",status2, status2];
 
         // not sure what happened, returning unknown
         return @"resultstring";
