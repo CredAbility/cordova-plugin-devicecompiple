@@ -86,7 +86,7 @@ NSString * const UIDevicePasscodeKeychainAccount = @"UIDevice-PasscodeStatus_Key
             return @"LNPasscodeStatusEnabled";
         }
         
-        NSString *resultstring = [NSString stringWithFormat:@"status: (%@), Status: (%@)",status2, status2];
+        NSString *resultstring = [NSString stringWithFormat:@"status: (%@), Status: (%@)",message1, message2];
 
         // not sure what happened, returning unknown
         return resultstring;
