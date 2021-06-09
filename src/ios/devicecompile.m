@@ -59,7 +59,7 @@
     //});
  // }
 
-  NSString *resultstring = [NSString stringWithFormat:@"Jailbroken: (%s), Status: (%@)", jailbroken ? "true" : "false", status];
+  NSString *resultstring = [NSString stringWithFormat:@"Jailbroken: (%s), Status: (%@)", jailbroken ? @"true" : @"false", status];
   
   CDVPluginResult *pluginResult = nil;
   pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:resultstring];
