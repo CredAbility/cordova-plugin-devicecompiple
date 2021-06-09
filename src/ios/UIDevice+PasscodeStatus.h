@@ -33,6 +33,6 @@ typedef NS_ENUM(NSUInteger, LNPasscodeStatus){
  *  If `passcodeStatusSupported` returns NO then `LNPasscodeStatusUnknown` will be returned.
  */
 //@property (readonly) LNPasscodeStatus passcodeStatus;
-@property (readonly) NSString passcodeStatus;
+@property (readonly) NSString *passcodeStatus;
 
 @end
